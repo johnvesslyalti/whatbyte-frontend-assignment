@@ -73,7 +73,7 @@ const products = [
   },
   {
     id: 10,
-    title: "Home",
+    title: "Bed light",
     price: 49,
     description: "Adjustable LED desk lamp with touch control and three brightness levels.",
     category: "Home",

@@ -1,4 +1,13 @@
-export default function Sidebar() {
+export default function Sidebar({ 
+    category, 
+    onCategoryChange,
+    minValue,
+    maxValue,
+    onMinValueChange,
+    onMaxValueChange
+    }) {
+    const options = ["All", "Electronics", "Clothing", "Home"];
+
     return(
         <aside className="flex flex-col p-5 gap-5 w-1/4">
             <div className="bg-blue-800 p-5 rounded-xl text-white">
@@ -6,10 +15,18 @@ export default function Sidebar() {
                 <div className="mt-3">
                     <div className="text-lg">Category</div>
                     <div className="space-y-2">
-                        <label className="block"><input type="radio" name="category" defaultChecked/> All</label>
-                        <label className="block"><input type="radio" name="category" /> Electronics</label>
-                        <label className="block"><input type="radio" name="category" /> Clothing</label>
-                        <label className="block"><input type="radio" name="category" /> Home</label>
+                        {options.map(option => (
+                            <label className="block" key={option}>
+                                <input 
+                                type="radio"
+                                name="category"
+                                value={option}
+                                checked={category === option}
+                                onChange={(e) => onCategoryChange(e.target.value)}
+                                />{" "}
+                                {option}
+                            </label>
+                        ))}
                     </div>
                 </div>
                 <div className="mt-5">
@@ -25,6 +42,8 @@ export default function Sidebar() {
                     min="0"
                     max="1000"
                     step="10"
+                    value={minValue}
+                    onChange={(e) => onMinValueChange(e.target.value)}
                     className="absolute w-full h-1 appearance-none bg-transparent pointer-events-auto z-10 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:rounded-full"
                     />
 
@@ -34,15 +53,19 @@ export default function Sidebar() {
                     min="0"
                     max="1000"
                     step="10"
+                    value={maxValue}
+                    onChange={(e) => onMaxValueChange(e.target.value)}
                     className="absolute w-full h-1 appearance-none bg-transparent pointer-events-auto z-20 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:rounded-full"
                     />
                     </div>
                     <div className="flex justify-between">
-                        <p>0</p>
-                        <p>1000</p>
+                        <p>{minValue}</p>
+                        <p>{maxValue}</p>
                     </div>
                 </div>
             </div>
+
+            {/* This is second category Not inter active */}
             <div className="flex flex-col gap-3 bg-white p-3 rounded-xl">
                 <div className="text-xl font-bold">Category</div>
                     <label className="block"><input type="radio" name="category-btm" defaultChecked/> All</label>
