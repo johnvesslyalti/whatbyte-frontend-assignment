@@ -12,7 +12,7 @@ export default function ProductList({ category, minValue, maxValue, search }) {
 
     const afterFilter = () => {
         try {
-            let filtered = products;
+            let filtered = Array.isArray(products) ? products : [];
 
             if(category && category !== "All") {
                 filtered = filtered.filter(p => p.category === category);
@@ -40,7 +40,10 @@ export default function ProductList({ category, minValue, maxValue, search }) {
     return(
         <div className="w-3/4 p-5">
             <div className="text-5xl font-bold text-blue-950">Product Listing</div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-5 gap-20">
+            {filterProducts.length === 0 ? (
+                <p className="mt-10 text-xl text-gray-600">No Products found</p>
+            ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-5 gap-20">
                 {filterProducts.map((product) => (
                         <div
                         key={product.id}
@@ -67,6 +70,7 @@ export default function ProductList({ category, minValue, maxValue, search }) {
                         </div>
                 ))}
             </div>
+            )}
         </div>
     )
 }
