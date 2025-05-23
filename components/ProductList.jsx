@@ -51,11 +51,12 @@ export default function ProductList({ category, minValue, maxValue }) {
                                 className="w-full h-full object-cover"
                                 />
                             </div>
+                            </Link>
                             <div className="flex flex-col items-start gap-1">
                                 <div className="text-xl font-bold">{product.title}</div>
                                 <div className="font-bold text-lg">$ {product.price}</div>
                             </div>
-                            </Link>
+                            
                             <button
                             onClick={() => addToCart(product)}
                             className="bg-blue-700 py-2 w-full text-white rounded-xl cursor-pointer">Add to Cart</button>

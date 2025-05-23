@@ -3,12 +3,11 @@
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import products from "/data/products";
-import { StepBack } from "lucide-react";
+import Back from "@/components/Back";
 
 export default function ProductPage() {
     const [product, setProduct] = useState(null);
     const params = useParams();
-    const router = useRouter();
     const id = params.id;
 
     useEffect(() => {
@@ -24,7 +23,7 @@ export default function ProductPage() {
 
     return (
         <div className="min-h-screen bg-white p-6 md:p-12 flex flex-col md:flex-row gap-10">
-            <button onClick={() => router.push("/")} className="absolute flex justify-center items-center top-5 left-5 text-blue-500 cursor-pointer"><StepBack /><p className="text-xl">Back</p></button>
+            <Back />
             <div className="md:w-1/2 w-full flex justify-center items-center">
                 <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-200">
                     <img 
