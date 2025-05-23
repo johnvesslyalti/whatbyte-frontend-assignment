@@ -1,0 +1,1 @@
+The project has been deployed at https://whatbyte-frontend-assignment.vercel.app/.
