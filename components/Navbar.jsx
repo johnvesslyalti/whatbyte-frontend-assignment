@@ -4,7 +4,7 @@ import { Search, ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 import useCartStore from '/stores/useCartStore';
 
-export default function Navbar() {
+export default function Navbar({ search, onSearch}) {
     const cart = useCartStore(state => state.cart);
     return(
         <nav className='flex justify-between items-center px-10 py-5 bg-blue-800'>
@@ -12,6 +12,8 @@ export default function Navbar() {
             <div className='flex border-white/30 w-1/3 p-3 border gap-5 rounded-lg'>
                 <Search className='text-white'/>
                 <input 
+                value={search}
+                onChange={(e) => onSearch(e.target.value)}
                 type="text"
                 placeholder="Search for products..."
                 className='text-white placeholder-white focus:outline-none'

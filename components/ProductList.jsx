@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import useCartStore from "/stores/useCartStore";
 
 
-export default function ProductList({ category, minValue, maxValue }) {
+export default function ProductList({ category, minValue, maxValue, search }) {
     const [filterProducts, setFilteredProducts] = useState([]);
     const addToCart = useCartStore((state) => state.addToCart);
 
@@ -22,6 +22,10 @@ export default function ProductList({ category, minValue, maxValue }) {
                 filtered = filtered.filter(p => p.price >= minValue && p.price <= maxValue);
             }
 
+            if(search) {
+                filtered = filtered.filter(p => p.title.toLowerCase().includes(search.toLowerCase()));
+            }
+
             setFilteredProducts(filtered);
             
         } catch(error) {
@@ -31,7 +35,7 @@ export default function ProductList({ category, minValue, maxValue }) {
 
     useEffect(() => {
         afterFilter();
-    }, [category, minValue, maxValue]);
+    }, [category, minValue, maxValue, search]);
 
     return(
         <div className="w-3/4 p-5">
